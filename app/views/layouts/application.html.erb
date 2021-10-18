@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MyTripPlan</title>
+    <title>MY TRIP PLAN</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,30 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-sm fixed-top navbar-light">
+    <div class="container">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">MY TRIP PLAN</a>
+      <div class="collapse navbar-collapse" id="navbar1">
+        <ul class="navbar-nav">
+          <% if user_signed_in? %>
+          <li class="nav-item active">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          </li>
+          <% else %>
+          <li class="nav-item active">
+            <%= link_to "新規登録", new_user_registration_path %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to "ログイン", new_user_session_path %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    </nav>
     <%= yield %>
   </body>
 </html>
