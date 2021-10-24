@@ -10,4 +10,6 @@ class User < ApplicationRecord
   belongs_to_active_hash :prefecture
   validates :prefecture, presence: true
 
+  has_many :plans, dependent: :destroy
+
 end

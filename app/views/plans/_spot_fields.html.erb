@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="nested-fields well well-compact">
+    <div class="form-group row">
+      <div class="col-md-4">
+        <%= f.label :spot_name, 'スポット名' %>
+      </div>
+      <div class="col-md-8">
+        <%= f.text_field :spot_name, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-4">
+        <%= f.label :spot_introduction, 'スポット紹介文' %>
+      </div>
+      <div class="col-md-8">
+        <%= f.text_area :spot_introduction, class: "form-control" %>
+      </div>
+      <div class="offset-md-11">
+        <%= link_to_remove_association "削除", f %>
+      </div>
+    </div>
+  </div>
+</div>

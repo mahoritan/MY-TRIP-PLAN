@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row mt-5 mb-4">
+    <h2>PLAN登録</h2>
+  </div>
+
+
+    <%= form_with model: @plan, url: plans_path, local:true do |f| %>
+    <div class="form-group row mb-4">
+      <div class="col-md-4">
+        <%= f.label "タイトル" %>
+      </div>
+      <div class="col-md-8">
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group row mb-4">
+      <div class="col-md-4">
+        <%= f.label "エリア" %>
+      </div>
+      <div class="col-md-8">
+        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, class: 'form-select' %>
+       </div>
+    </div>
+    <div class="form-group row mb-4">
+      <div class="col-md-4">
+        <%= f.label "プランTOP画像" %>
+      </div>
+    </div>
+    <div class="form-group row mb-4">
+      <div class="col-md-4">
+        <%= f.label "プラン紹介文" %>
+      </div>
+      <div class="col-md-8">
+        <%= f.text_area :plan_introduction, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <%= f.fields_for :spots do |op| %>
+        <%= render 'spot_fields', f: op %>
+        <div id="links"></div>
+        <div class="offset-md-9">
+        <%= link_to_add_association '＋別のスポットを追加', f, :spots %>
+        </div>
+    </div>
+
+  <div class="row">
+    <%= f.submit "プラン登録", class: "btn btn-outline-secondary" %>
+  </div>
+   <% end %>
+  <% end %>
+
+</div>

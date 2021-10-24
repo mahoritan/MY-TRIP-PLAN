@@ -71,3 +71,6 @@ gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
 
 gem 'active_hash'
+
+gem 'jquery-rails'
+gem 'cocoon'
