@@ -74,3 +74,5 @@ gem 'active_hash'
 
 gem 'jquery-rails'
 gem 'cocoon'
+
+gem 'pry-byebug'

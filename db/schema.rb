@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_24_115414) do
+ActiveRecord::Schema.define(version: 2021_10_26_145645) do
 
   create_table "form_bases", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -23,17 +23,13 @@ ActiveRecord::Schema.define(version: 2021_10_24_115414) do
   end
 
   create_table "plans", force: :cascade do |t|
-    t.integer "area_id"
     t.integer "prefecture_id"
     t.integer "user_id"
-    t.string "spot_name"
     t.string "title"
     t.text "plan_introduction"
-    t.string "image_id"
     t.integer "transportation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "spot_introduction"
     t.string "plan_image_id"
   end
 
@@ -44,6 +40,7 @@ ActiveRecord::Schema.define(version: 2021_10_24_115414) do
     t.string "spot_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "schedule_time"
     t.index ["plan_id"], name: "index_spots_on_plan_id"
   end
 

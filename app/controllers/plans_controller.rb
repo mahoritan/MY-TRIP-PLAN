@@ -1,6 +1,7 @@
 class PlansController < ApplicationController
 
   def index
+    @plans = Plan.all
   end
 
   def show
@@ -13,7 +14,9 @@ class PlansController < ApplicationController
 
   def create
     @plan = Plan.new(plan_params)
-    @plan.spots.build
+    @plan.user_id = current_user.id
+    @plan.save
+    redirect_to root_path
   end
 
   def edit
@@ -27,9 +30,8 @@ class PlansController < ApplicationController
 
   private
 
-  def plan_collection_params
-    params.require(:plan).permit(:title, :plan_introduction, :prefecture_id, :plan_image_id,
-      [ordered_products_attributes: [:plan_id, :spot_name, :spot_introduction, :spot_image_id, :_destroy]])
+  def plan_params
+    params.require(:plan).permit(:title, :plan_introduction, :prefecture_id, :plan_image, :transportation, spots_attributes: [:id, :spot_name, :spot_introduction, :spot_image, :schedule_time, :_destroy])
   end
 
 end
