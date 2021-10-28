@@ -5,13 +5,16 @@
 
   <div class="row">
     <% @plans.each do |plan| %>
+    <div class="card-deck">
     <div class="card" style="width: 18rem;">
       <%= attachment_image_tag plan, :plan_image, :fill, 300, 225, format: 'jpeg' %>
       <div class="card-body">
         <h5 class="card-title"><%= plan.title %></h5>
-      <p class="card-text"><%= plan.plan_introduction %></p>
+        <p class="card-text"><%= plan.plan_introduction %></p>
+        <p class="card-text"><%= plan.prefecture.name %></p>
+        <p class="card-text text-right"><%= plan.user.name %></p>
+      </div>
     </div>
-
     <% end %>
   </div>
 </div>
