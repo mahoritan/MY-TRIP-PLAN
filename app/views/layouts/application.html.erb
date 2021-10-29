@@ -10,7 +10,8 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-sm fixed-top navbar-light">
+  <% unless current_page?(root_path) %>
+    <nav class="navbar navbar-expand-sm navbar-light">
     <div class="container">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
         <span class="navbar-toggler-icon"></span>
@@ -20,7 +21,7 @@
         <ul class="navbar-nav">
           <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "マイページ", user_path(current_user.id) %>
+            <%= link_to "マイページ", user_path(current_user.id), class: '' %>
           </li>
           <li class="nav-item active">
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
@@ -37,6 +38,7 @@
       </div>
     </div>
     </nav>
+    <% end %>
     <%= yield %>
   </body>
 </html>

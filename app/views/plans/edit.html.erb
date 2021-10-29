@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row mt-5 mb-4">
-    <h2>PLAN登録</h2>
+    <h2>PLAN編集</h2>
   </div>
 
-    <%= form_with model: @plan, url: plans_path, local:true do |f| %>
+  <%= form_with model: @plan, url: plan_path, local:true do |f| %>
     <div class="form-group row mb-4">
       <div class="col-md-4">
         <%= f.label "プランタイトル" %>
@@ -46,21 +46,23 @@
     </div>
 
     <div class="row">
-      <div class="row mt-3 mb-3">
-        <h4>スポット登録</h4>
-      </div>
       <%= f.fields_for :spots do |op| %>
         <%= render 'spot_fields', f: op %>
         <div id="links"></div>
         <div class="offset-md-10">
         <%= link_to_add_association '＋別のスポットを追加', f, :spots %>
         </div>
+      <% end %>
     </div>
 
   <div class="row">
-    <%= f.submit "プラン登録", class: "btn btn-outline-secondary" %>
+    <div class="offset-md-3">
+      <%= f.submit "プラン編集", class: "btn btn-outline-secondary" %>
+    </div>
+    <div class="offset-md-3">
+      <%= link_to "プラン削除", plan_path(@plan.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-secondary" %>
+    </div>
   </div>
-   <% end %>
-  <% end %>
 
+  <% end %>
 </div>
