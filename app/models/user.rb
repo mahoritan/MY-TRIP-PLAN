@@ -12,4 +12,6 @@ class User < ApplicationRecord
 
   has_many :plans, dependent: :destroy
 
+  attachment :image
+
 end

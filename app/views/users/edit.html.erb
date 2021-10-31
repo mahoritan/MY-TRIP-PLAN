@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row mt-5 mb-3">
+    <h4>プロフィール編集</h4>
+  </div>
+
+<%= form_with model: @user, local:true do |f| %>
+  <div class="row mb-3">
+    <div class="field">
+      <%= f.label "プロフィール画像" %></br>
+      <%= f.attachment_field :image %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="field">
+      <%= f.label "ニックネーム" %>
+      <%= f.text_field :name, autofocus: true, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="field">
+      <%= f.label "プロフィール文" %>
+      <%= f.text_area :introduction, autofocus: true, class: "form-control", placeholder: "国内旅行・温泉めぐりが好きです！等" %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="field">
+      <%= f.label "居住地" %>
+      <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, class: 'form-select' %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="field">
+      <%= f.label 'メールアドレス' %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= f.submit "編集する", class: "btn btn-outline-secondary" %>
+  </div>
+  <% end %>
+</div>
