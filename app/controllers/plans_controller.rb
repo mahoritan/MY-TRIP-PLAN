@@ -7,6 +7,7 @@ class PlansController < ApplicationController
   def show
     @plan = Plan.find(params[:id])
     @spots = Spot.where(plan_id: @plan.id)
+    @comment = Comment.new
   end
 
   def new

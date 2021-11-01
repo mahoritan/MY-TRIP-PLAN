@@ -46,6 +46,20 @@
       <p class="mt-5"><%= spot.spot_introduction %></p>
     </div>
   </div>
-
   <% end %>
+
+  <div class="row">
+    <div class="offset-md-2">
+      <% @plan.comments.each do |comment| %>
+        <%= comment.comment_text %>
+        <%= link_to comment.user.name, user_path(@user.id) %>
+      <% end %>
+    </div>
+    <div class="offset-md-2">
+      <%= form_with(model:[@plan, @comment], local: true) do |f| %>
+        <%= f.text_area :comment_text, rows:'5', placeholder: "コメント" %>
+        <%= f.submit "送信する", class: "btn btn-outline-secondary" %>
+      <% end %>
+    </div>
+  </div>
 </div>

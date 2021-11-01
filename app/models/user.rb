@@ -11,6 +11,7 @@ class User < ApplicationRecord
   validates :prefecture, presence: true
 
   has_many :plans, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   attachment :image
 
