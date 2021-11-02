@@ -5,10 +5,12 @@ class CommentsController < ApplicationController
     comment = current_user.comments.new(comment_params)
     comment.plan_id = plan.id
     comment.save
-    redirect_to plan_path(plan.id)
+    redirect_to plan_path(plan)
   end
 
   def destroy
+    Comment.find_by(id: params[:id]).destroy
+    redirect_to plan_path(params[:plan_id])
   end
 
   private
