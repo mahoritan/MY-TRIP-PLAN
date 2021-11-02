@@ -6,6 +6,12 @@ class Plan < ApplicationRecord
   belongs_to :user
   has_many :spots, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_plans, through: :favorites, source: :plan
+
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
 
   accepts_nested_attributes_for :spots, allow_destroy: true
 

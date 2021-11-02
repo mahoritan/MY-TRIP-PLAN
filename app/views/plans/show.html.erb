@@ -25,11 +25,23 @@
       主な移動手段：<%= @plan.transportation %>
     </div>
   </div>
+
   <div class="row mt-3">
-    <div class="offset-md-9">
-      By <%= link_to @plan.user.name, user_path(@plan.user.id) %>
+    <div class="offset-md-2 col-md-4">
+      <% if current_user == @plan.user %>
+        <%= link_to edit_plan_path(@plan.id), id: "button-edit-#{@plan.id}" do %>
+          <%= icon 'fa', 'pen' %>
+        <% end %>
+        <%= link_to plan_path(@plan.id), id: "button-delete-#{@plan.id}", method: :delete, data: {confirm: '本当に削除してもよろしいです'} do %>
+          <%= icon 'fas', 'trash' %>
+        <% end %>
+      <% else %>
+        <%= render 'plans/favorite_area', plan: @plan %>
+      <% end %>
     </div>
   </div>
+
+
 
   <% @spots.each do |spot| %>
   <div class="row mt-5">

@@ -1,0 +1,3 @@
+<%= link_to plan_favorites_path(@plan.id), id: "js-favorite-button-for-plan-#{@plan.id}", method: :delete do %>
+  <%= icon 'fas', 'star' %>
+<% end %>
