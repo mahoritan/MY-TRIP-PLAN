@@ -1,3 +1,7 @@
 <%= link_to plan_favorites_path(@plan.id), id: "js-favorite-button-for-plan-#{@plan.id}", method: :post do %>
-  <%= icon 'far', 'star' %>
+  <button class="btn btn-outline-danger">
+    <i class="far fa-heart">
+      <%= @plan.favorites.count %>行きたい
+    </i>
+    </button>
 <% end %>

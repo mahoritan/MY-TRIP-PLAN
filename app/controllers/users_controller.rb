@@ -15,6 +15,12 @@ class UsersController < ApplicationController
     redirect_to user_path(@user.id)
   end
 
+  def favorites
+    @user = User.find(params[:id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:plan_id)
+    @favorite_plans = Plan.find(favorites)
+  end
+
   private
 
   def user_params

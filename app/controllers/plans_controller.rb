@@ -38,10 +38,6 @@ class PlansController < ApplicationController
     redirect_to plans_path
   end
 
-  def favorites
-    @plan = current_user.favorite_plans.includes(:user).order(created_at: :desc)
-  end
-
   private
 
   def plan_params
