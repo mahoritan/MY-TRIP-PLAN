@@ -50,10 +50,10 @@
     </div>
   </div>
   <div class="row mt-3">
-    <div class="offset-md-2 col-md-4">
-      <%= attachment_image_tag spot, :spot_image, :fill, 300, 225, format: 'jpeg' %>
+    <div class="offset-lg-2 col-lg-4">
+      <%= attachment_image_tag spot, :spot_image, format: 'jpeg', fallback: "img/no_imagelogo.jpg", size: "300x225" %>
     </div>
-    <div class="col-md-6">
+    <div class="col-lg-6">
       <h4><%= spot.spot_name %></h4>
       <p class="mt-5"><%= spot.spot_introduction %></p>
     </div>

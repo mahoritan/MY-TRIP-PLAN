@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def favorites
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:plan_id)
-    @favorite_plans = Plan.find(favorites)
+    @favorite_plans = @user.favorites.order(created_at: "DESC").map{|favorite| favorite.plan}
   end
 
   private

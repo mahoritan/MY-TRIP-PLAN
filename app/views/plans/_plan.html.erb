@@ -1,1 +1,12 @@
-<%= plan.title %>
+<div class="card-deck">
+  <div class="card" style="width: 18rem;">
+    <%= attachment_image_tag plan, :plan_image, :fill, 300, 225, format: 'jpeg', fallback: "img/no_imagelogo.jpg" %>
+    <div class="card-body">
+      <h5 class="card-title">
+        <%= link_to plan.title, plan_path(plan.id) %></h5>
+        <p class="card-text"><%= plan.plan_introduction %></p>
+        <p class="card-text"><%= plan.prefecture.name %></p>
+        <p class="card-text text-right"><%= plan.user.name %></p>
+    </div>
+  </div>
+</div>
