@@ -45,6 +45,41 @@
       </div>
     </div>
   </div>
+
   <div class="row">
-      <h2>about</h2>
+    <div class="card-item col-md-7 mt-5">
+      <div class="card-text text-center mt-5">
+        <p style="line-height:3rem">
+        MY TRIP PLANは、オリジナルの旅行プランを作って共有できます。</br>
+        旅行プランを立てるのが好きな方には表現の場として。</br>
+        そうでない方は、行きたいスポットを見つけたり、新たな旅行のテーマを発見したり...</br>
+        投稿されている様々なプランを参考に、旅行計画をスムーズに立てることができます。
+        </p>
+      </div>
+    </div>
+    <div class="col-md-5 mt-5">
+      <%= image_tag('img/about_image.png', size: "400x300") %>
+    </div>
   </div>
+
+
+  <div class="row mt-5 ml-3">
+    <h4>人気のプラン</h4>
+  </div>
+  <div class="row ml-5">
+    <% @plans.each do |plan| %>
+      <div class="card-deck ml-2">
+        <div class="card" style="width: 18rem;">
+          <%= attachment_image_tag plan, :plan_image, :fill, 300, 225, format: 'jpeg', fallback: "img/no_imagelogo.jpg" %>
+        <div class="card-body">
+          <h5 class="card-title">
+          <%= link_to plan.title, plan_path(plan.id) %></h5>
+          <p class="card-text"><%= plan.plan_introduction %></p>
+          <p class="card-text"><%= plan.prefecture.name %></p>
+          <p class="card-text text-right"><%= plan.user.name %></p>
+        </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
