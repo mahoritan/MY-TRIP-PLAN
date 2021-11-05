@@ -1,21 +1,41 @@
-<div class="container">
-  <div class="row mt-5 mb-4">
+<div class="jumbotron">
+  <div class="container-fluid">
     <h2>PLAN一覧</h2>
   </div>
+</div>
+
+<div class="container">
+  <%= search_form_for @q do |f| %>
+    <div class="row mb-5">
+      <div class="offset-md-9">
+        <%= f.collection_select :prefecture_id_cont, Prefecture.all, :id, :name, {include_blank: '都道府県'}, {class: 'custom-select'} %>
+      </div>
+        <%= f.submit '検索', class: 'search_submit btn btn-outline-secondary ml-5' %>
+    </div>
+  <% end %>
 
   <div class="row">
-    <% @plans.each do |plan| %>
-    <div class="card-deck">
-    <div class="card" style="width: 18rem;">
-      <%= attachment_image_tag plan, :plan_image, :fill, 300, 225, format: 'jpeg', fallback: "img/no_imagelogo.jpg" %>
-      <div class="card-body">
-        <h5 class="card-title">
+       <% @plans.each do |plan| %>
+      <div class="card-deck ml-2">
+        <div class="card h-150" style="width: 18rem; height: 32rem;">
+          <%= attachment_image_tag plan, :plan_image, :fill, 300, 225, format: 'jpeg', fallback: "img/no_imagelogo.jpg" %>
+        <div class="card-body">
+          <h5 class="card-title" style="height: 3rem;">
           <%= link_to plan.title, plan_path(plan.id) %></h5>
-        <p class="card-text"><%= plan.plan_introduction %></p>
-        <p class="card-text"><%= plan.prefecture.name %></p>
-        <p class="card-text text-right"><%= plan.user.name %></p>
+          <p class="card-text text-overflow" style="height: 5rem;"><%= plan.plan_introduction %></p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <i class="fas fa-map-marker-alt mr-5"><%= plan.prefecture.name %></i>
+              <i class="far fa-heart"><%= plan.favorites.count %>行きたい</i>
+            </li>
+            <li class="list-group-item text-right">
+              <i class="fas fa-user mr-2"><%= link_to plan.user.name, user_path(plan.user) %></i>
+            </li>
+          </ul>
+        </div>
+        </div>
       </div>
-    </div>
     <% end %>
   </div>
+</div>
 </div>

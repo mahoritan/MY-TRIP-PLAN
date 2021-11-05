@@ -34,3 +34,14 @@
   text-align: center;
   font-weight: bold;
 }
+
+.jumbotron {
+  background: url("img/header_image.png");
+  background-position: center center;
+  background-size: cover;
+  color: black;
+}
+
+.jumbotron .container-fluid {
+  margin-top: 13%;
+}

@@ -1,8 +1,11 @@
 class PlansController < ApplicationController
 
   def index
-    @plans = Plan.all.page(params[:page]).reverse_order
+    @q = Plan.ransack(params[:q])
+    @plans = @q.result
   end
+
+
 
   def show
     @plan = Plan.find(params[:id])

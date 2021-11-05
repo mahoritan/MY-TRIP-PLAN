@@ -11,41 +11,39 @@
   </head>
 
   <body>
-  <% unless current_page?(root_path) %>
-    <nav class="navbar navbar-expand-sm navbar-light">
-    <div class="container">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">MY TRIP PLAN</a>
-      <div class="collapse navbar-collapse" id="navbar1">
+      <a class="navbar-brand" href="/">MY TRIP PLAN</a>
+      <div class="collapse navbar-collapse justify-content-end" id="navbar1">
         <ul class="navbar-nav">
           <% if user_signed_in? %>
           <li class="nav-item active ml-5 mr-5">
-            <%= link_to "プラン", plans_path %>
+            <%= link_to "プラン", plans_path, class: 'text-white' %>
           </li>
           <li class="nav-item active mr-5">
-            <%= link_to "プラン登録", new_plan_path %>
+            <%= link_to "プラン登録", new_plan_path, class: 'text-white' %>
           </li>
           <li class="nav-item active mr-5">
-            <%= link_to "マイページ", user_path(current_user.id) %>
+            <%= link_to "マイページ", user_path(current_user.id), class: 'text-white' %>
           </li>
           <li class="nav-item active">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'text-white' %>
           </li>
           <% else %>
           <li class="nav-item active ml-5 mr-5">
-            <%= link_to "新規登録", new_user_registration_path %>
+            <%= link_to "新規登録", new_user_registration_path, class: 'text-white' %>
           </li>
           <li class="nav-item active mr-5">
-            <%= link_to "ログイン", new_user_session_path %>
+            <%= link_to "ログイン", new_user_session_path, class: 'text-white' %>
           </li>
           <% end %>
         </ul>
       </div>
     </div>
     </nav>
-    <% end %>
     <%= yield %>
   </body>
 </html>

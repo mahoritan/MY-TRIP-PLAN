@@ -2,42 +2,10 @@
   <div class="row">
     <div class="col no-gutters">
       <%= image_tag('img/topimg.jpg', class: "img-fluid") %>
-      <nav class="navbar navbar-expand-sm fixed-top navbar-light">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navbar-brand" href="#">MY TRIP PLAN</a>
-      <div class="collapse navbar-collapse" id="navbar1">
-        <ul class="navbar-nav">
-          <% if user_signed_in? %>
-          <li class="nav-item active ml-5 mr-5">
-            <%= link_to "プラン", plans_path %>
-          </li>
-          <li class="nav-item active mr-5">
-            <%= link_to "プラン登録", new_plan_path %>
-          </li>
-          <li class="nav-item active mr-5">
-            <%= link_to "マイページ", user_path(current_user.id), class: '' %>
-          </li>
-          <li class="nav-item active">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-          </li>
-          <% else %>
-          <li class="nav-item active ml-5 mr-5">
-            <%= link_to "新規登録", new_user_registration_path %>
-          </li>
-          <li class="nav-item active mr-5">
-            <%= link_to "ログイン", new_user_session_path %>
-          </li>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
-
-      <div class="card-img-overlay">
-        <p class="text-white">使い方はあなた次第</p>
-        <h1 class="text-white">MY TRIP PLAN</h1>
-        <p class="text-white">
+      <div class="card-img-overlay text-white">
+        <p class="mb-3">使い方はあなた次第</p>
+        <h1>MY TRIP PLAN</h1>
+        <p class="mt-5 mb-5">
           様々な旅のシーンで役立つ<br/>
           旅プラン共有サイト
         </p>
@@ -69,14 +37,18 @@
   <div class="row ml-5">
     <% @plans.each do |plan| %>
       <div class="card-deck ml-2">
-        <div class="card" style="width: 18rem;">
+        <div class="card h-100" style="width: 18rem; height: 32rem;">
           <%= attachment_image_tag plan, :plan_image, :fill, 300, 225, format: 'jpeg', fallback: "img/no_imagelogo.jpg" %>
         <div class="card-body">
-          <h5 class="card-title">
+          <h5 class="card-title" style="height: 3rem;">
           <%= link_to plan.title, plan_path(plan.id) %></h5>
-          <p class="card-text"><%= plan.plan_introduction %></p>
-          <p class="card-text"><%= plan.prefecture.name %></p>
-          <p class="card-text text-right"><%= plan.user.name %></p>
+          <p class="card-text text-overflow" style="height: 5rem;"><%= plan.plan_introduction %></p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <i class="fas fa-map-marker-alt mr-5"><%= plan.prefecture.name %></i>
+              <i class="far fa-heart"><%= plan.favorites.count %>行きたい</i>
+            </li>
+          </ul>
         </div>
         </div>
       </div>

@@ -1,8 +1,10 @@
-<div class="container">
-  <div class="row mt-5 mb-4">
-    <h2>MY PAGE</h2>
+<div class="jumbotron">
+  <div class="container-fluid">
+    <h2>MYPAGE</h2>
   </div>
+</div>
 
+<div class="container">
   <div class="row">
     <div class="co-md-4">
       <%= attachment_image_tag @user, :image_id, format: 'jpeg', fallback: "img/no_image.jpg", size: "130x130" %>
