@@ -2,7 +2,7 @@ class PlansController < ApplicationController
 
   def index
     @q = Plan.ransack(params[:q])
-    @plans = @q.result
+    @plans = @q.result(distinct: true)
   end
 
   def show

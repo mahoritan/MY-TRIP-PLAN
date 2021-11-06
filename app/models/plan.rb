@@ -8,8 +8,8 @@ class Plan < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_plans, through: :favorites, source: :plan
-  has_many :post_tags, dependent: :destroy
-  has_many :tags, through: :post_tags
+  has_many :plan_tags, dependent: :destroy
+  has_many :tags, through: :plan_tags
 
 
   def favorited_by?(user)

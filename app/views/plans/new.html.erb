@@ -7,58 +7,57 @@
   <div class="container">
     <%= form_with model: @plan, url: plans_path, local:true do |f| %>
     <div class="form-group row mb-4">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <%= f.label "プランタイトル" %>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-9">
         <%= f.text_field :title, class: "form-control" %>
       </div>
     </div>
     <div class="form-group row mb-4">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <%= f.label "プランTOP画像" %>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-9">
       <%= f.attachment_field :plan_image %>
       </div>
     </div>
     <div class="form-group row mb-4">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <%= f.label "エリア" %>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-9">
         <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: '都道府県'}, {class: 'custom-select'} %>
        </div>
     </div>
     <div class="form-group row mb-4">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <%= f.label "主な移動手段" %>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-9">
        <%= f.select :transportation, Plan.transportations.keys, {prompt: "選択してください"} %>
       </div>
     </div>
     <div class="form-group row mb-4">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <%= f.label "プラン紹介文" %>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-9">
         <%= f.text_area :plan_introduction, class: "form-control" %>
       </div>
     </div>
     <div class="form-group row mb-4">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <%= f.label "タグ（複数選択可）" %>
       </div>
-      <div class="col-md-8 check_box">
+      <div class="col-md-9">
         <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-           <%= tag.label do %>
-           <%= tag.check_box %>
-           <%= tag.text %>
-           <% end %>
-     </div>
-   <% end %>
- </div>
+          <%= tag.label do %>
+            <%= tag.check_box %>
+            <%= tag.text %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
 
     <div class="row">
@@ -78,5 +77,5 @@
   </div>
    <% end %>
   <% end %>
-
+</div>
 </div>
