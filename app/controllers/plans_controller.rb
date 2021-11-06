@@ -5,8 +5,6 @@ class PlansController < ApplicationController
     @plans = @q.result
   end
 
-
-
   def show
     @plan = Plan.find(params[:id])
     @spots = Spot.where(plan_id: @plan.id)
@@ -44,7 +42,7 @@ class PlansController < ApplicationController
   private
 
   def plan_params
-    params.require(:plan).permit(:title, :plan_introduction, :prefecture_id, :plan_image, :transportation, spots_attributes: [:id, :spot_name, :spot_introduction, :spot_image, :schedule_time, :_destroy])
+    params.require(:plan).permit(:title, :plan_introduction, :prefecture_id, :plan_image, :transportation, tag_ids: [], spots_attributes: [:id, :spot_name, :spot_introduction, :spot_image, :schedule_time, :_destroy])
   end
 
 end

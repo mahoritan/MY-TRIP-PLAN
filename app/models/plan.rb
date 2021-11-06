@@ -8,6 +8,9 @@ class Plan < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_plans, through: :favorites, source: :plan
+  has_many :post_tags, dependent: :destroy
+  has_many :tags, through: :post_tags
+
 
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
@@ -15,6 +18,6 @@ class Plan < ApplicationRecord
 
   accepts_nested_attributes_for :spots, allow_destroy: true
 
-  enum transportation: { 車: 0, 電車: 1, バス: 2, バイク: 3, 自転車: 4, 徒歩: 5, その他: 6 }
+  enum transportation: { car: 0, train: 1, bus: 2, bike: 3, bicycle: 4, walk: 5, another: 6 }
 
 end
