@@ -27,29 +27,77 @@
       </div>
     </div>
     <div class="col-md-5 mt-5">
-      <%= image_tag('img/about_image.png', size: "400x300") %>
+      <%= image_tag('img/about_image.png', size: "400x300", class: 'd-block mx-auto') %>
     </div>
   </div>
 
-
-  <div class="row mt-5 ml-3">
-    <h4>人気のプラン</h4>
+  <div class="row mt-5">
+    <div class="col-md-12 text-center">
+      <h4>MY TRIP PLANの使い方</h4>
+    </div>
   </div>
-  <div class="row ml-5">
+
+  <div class="row mt-5 ml-1 mb-3">
+    <div class="col-md-3">
+      <div class="card border border-0">
+        <%= image_tag('img/travel_human2.png', size: "200x200", class: 'd-block mx-auto') %>
+        <div class="card-body text-center">
+          旅行先でプランを</br>
+          見ながら巡る
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card border border-0">
+        <%= image_tag('img/write.png', size: "200x200", class: 'd-block mx-auto') %>
+        <div class="card-body text-center">
+          旅行後にプランの</br>
+          思い出を綴る
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card border border-0">
+        <%= image_tag('img/phone2.png', size: "200x200", class: 'd-block mx-auto') %>
+        <div class="card-body text-center">
+          最新の旅行スポットを</br>
+          チェックする
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card border border-0">
+        <%= image_tag('img/list5.png', size: "200x200", class: 'd-block mx-auto') %>
+        <div class="card-body text-center">
+          自分だけの行きたい</br>
+          プランリストを作成する
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid top-color">
+  <div class="row pt-5 mb-4">
+    <div class="col-md-12 text-center text-white">
+      <h4>おすすめPLAN</h4>
+    </div>
+  </div>
+  <div class="row pb-5">
     <% @plans.each do |plan| %>
-      <div class="card-deck ml-2">
-        <div class="card h-100" style="width: 18rem; height: 32rem;">
+      <div class="card-deck d-block mx-auto">
+        <div class="card h-100" style="width: 15rem; height: 26rem;">
           <%= attachment_image_tag plan, :plan_image, :fill, 300, 225, format: 'jpeg', fallback: "img/no_imagelogo.jpg" %>
         <div class="card-body">
           <h5 class="card-title" style="height: 3rem;">
-          <%= link_to plan.title, plan_path(plan.id) %></h5>
+          <%= link_to plan.title, plan_path(plan.id), class: 'text-dark font-weight-bold' %></h5>
           <p class="card-text text-overflow" style="height: 5rem;"><%= plan.plan_introduction %></p>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <i class="fas fa-map-marker-alt mr-5"><%= plan.prefecture.name %></i>
-              <i class="far fa-heart"><%= plan.favorites.count %>行きたい</i>
-            </li>
-          </ul>
+        </div>
+        <div class="card-body">
+          <p>
+            <i class="fas fa-map-marker-alt"></i><%= plan.prefecture.name %>
+            <i class="far fa-heart ml-4 text-danger"><%= plan.favorites.count %>行きたい</i>
+          </p>
         </div>
         </div>
       </div>
