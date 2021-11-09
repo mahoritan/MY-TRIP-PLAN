@@ -6,35 +6,48 @@
 
 <div class="container">
   <div class="row">
-    <div class="co-md-4">
+    <div class="offset-md-2">
       <%= attachment_image_tag @user, :image_id, format: 'jpeg', fallback: "img/no_image.jpg", size: "130x130" %>
     </div>
-    <div class="offset-md-1 col-md-7">
+    <div class="offset-md-1 col-md-4">
       <h3><%= @user.name %></h3>
       <h5 class="mt-4"><%= @user.prefecture.name %></h5>
       <p class="mt-4"><%= @user.introduction %></p>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4 ml-1">
+    <div class="offset-md-1">
       <% if @user.id == current_user.id %>
-        <%= link_to "編集する", edit_user_path(@user.id), class: 'btn btn-outline-secondary' %>
+        <%= link_to edit_user_path(@user.id) do %>
+          <%= icon 'fa', 'pen', class: 'text-dark' %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="offset-md-2">
+      <%= link_to favorites_user_path, class: 'btn btn-outline-danger' do %>
+        <i class="far fa-heart">行きたいプランリスト</i>
       <% end %>
     </div>
   </div>
 
-  <% @plans.each do |plan| %>
-    <div class="row mt-3">
-      <div class="col-md-4">
-        <%= link_to plan_path(plan.id) do %>
-          <%= attachment_image_tag plan, :plan_image, :fill, 250, 167, format: 'jpeg' %>
-        <% end %>
-      </div>
-      <div class="col-md-8">
-        <h4><%= link_to plan.title, plan_path(plan.id) %></h4>
-        <p class="mt-3"><%= plan.plan_introduction %></p>
-      </div>
-    </div>
-  <% end %>
-</div>
+  <div class="row mb-5">
+    <% @plans.each do |plan| %>
+      <div class="card-deck ml-1">
+        <div class="card" style="width: 15rem; height: 26rem;">
+        <%= attachment_image_tag plan, :plan_image, :fill, 300, 225, format: 'jpeg', fallback: "img/no_imagelogo.jpg" %>
+        <div class="card-body">
+          <h5 class="card-title" style="height: 3rem;">
+          <%= link_to plan.title, plan_path(plan.id), class: 'text-dark font-weight-bold' %></h5>
+          <p class="card-text text-overflow" style="height: 5rem;"><%= plan.plan_introduction %></p>
+        </div>
+        <div class="card-body">
+          <p>
+            <i class="fas fa-map-marker-alt"></i><%= plan.prefecture.name %>
+            <i class="far fa-heart ml-4 text-danger"><%= plan.favorites.count %>行きたい</i>
+          </p>
+        </div>
+        </div>
+       </div>
+    <% end %>
+  </div>
 <%= paginate @plans %>

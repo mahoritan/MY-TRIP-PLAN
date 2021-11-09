@@ -1,12 +1,16 @@
-<div class="card-deck">
-  <div class="card" style="width: 18rem;">
+<div class="card-deck ml-1">
+  <div class="card" style="width: 15rem; height: 26rem;">
     <%= attachment_image_tag plan, :plan_image, :fill, 300, 225, format: 'jpeg', fallback: "img/no_imagelogo.jpg" %>
-    <div class="card-body">
-      <h5 class="card-title">
-        <%= link_to plan.title, plan_path(plan.id) %></h5>
-        <p class="card-text"><%= plan.plan_introduction %></p>
-        <p class="card-text"><%= plan.prefecture.name %></p>
-        <p class="card-text text-right"><%= plan.user.name %></p>
-    </div>
+      <div class="card-body">
+        <h5 class="card-title" style="height: 3rem;">
+        <%= link_to plan.title, plan_path(plan.id), class: 'text-dark font-weight-bold' %></h5>
+        <p class="card-text text-overflow" style="height: 5rem;"><%= plan.plan_introduction %></p>
+      </div>
+      <div class="card-body">
+        <p>
+          <i class="fas fa-map-marker-alt"></i><%= plan.prefecture.name %>
+          <i class="far fa-heart ml-4 text-danger"><%= plan.favorites.count %>行きたい</i>
+        </p>
+      </div>
   </div>
 </div>
