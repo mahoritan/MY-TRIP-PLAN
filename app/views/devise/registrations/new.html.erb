@@ -1,80 +1,83 @@
-<div class="container">
-  <div class="row mt-5 mb-3">
-    <h4>会員登録</h4>
-  </div>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-    <div class="form-group row mb-5">
-      <%= f.label "ニックネーム", class: 'col-md-2' %>
-      <div class="col-md-10">
-        <%= f.text_field :name, autofocus: true, class: "form-control col-md-4" %>
-      </div>
-    </div>
-
-  <div class="form-group row mb-5">
-    <%= f.label "性別", class: 'col-md-2' %>
-    <div class="form-check ml-3">
-      <%= f.radio_button :gender, :man, class: 'form-check-input' %>
-      <%= f.label "男性" %>
-    </div>
-    <div class="form-check">
-      <%= f.radio_button :gender, :woman %>
-      <%= f.label "女性" %>
-    </div>
-  </div>
-
-  <div class="form-group row mb-5">
-    <%= f.label "プロフィール文", class: 'col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_area :introduction, autofocus: true, class: "form-control  col-md-6", placeholder: "国内旅行・温泉めぐりが好きです！等" %>
-    </div>
-  </div>
-
-  <div class="form-group row mb-5">
-    <%= f.label "居住地", class: 'col-md-2' %>
-    <div class="col-md-10">
-      <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group row mb-5">
-    <%= f.label 'メールアドレス', class: 'col-md-2' %>
-    <div class="col-md-10">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control col-md-4" %>
-    </div>
-  </div>
-
-  <div class="form-group row mb-4">
-    <div class="col-md-2">
-      <%= f.label 'パスワード' %></br>
-      <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %>文字以上)</em>
-      <% end %>
-    </div>
-    <div class="col-md-10">
-      <%= f.password_field :password, autocomplete: "new-password", class: "form-control col-md-4" %>
-    </div>
-  </div>
-
-  <div class="form-group row mb-5">
-    <%= f.label 'パスワード(確認用)', class: 'col-md-2' %><br />
-    <div class="col-md-10">
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control col-md-4" %>
-    </div>
-  </div>
-
-  <div class="row mb-3">
-    <div class="actions">
-      <%= f.submit "登録する", class: "btn btn-outline-secondary" %>
-    </div>
-  </div>
-
-<% end %>
-
+<div class="container-fluid">
   <div class="row">
-    <div class="offset-md-9">
-      <%= link_to "ログインはこちら", new_user_session_path, class: 'text-muted' %>
+    <div class="col no-gutters">
+      <%= image_tag('img/new_page.jpg', class: "img-fluid") %>
+      <div class="card-img-overlay">
+        <div class="card col-md-9 mx-auto">
+          <div class="card-body">
+            <div class="card-title text-center mb-5 mt-5">
+              <h4>新規会員登録</h4>
+            </div>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+              <div class="form-group row mb-5 col-md-12">
+                <%= f.label "ニックネーム", class: 'col-md-6' %>
+                <div class="col-md-6">
+                  <%= f.text_field :name, autofocus: true, class: "form-control col-md-8" %>
+                </div>
+              </div>
+              <div class="form-group row mb-5 col-md-12">
+                <%= f.label "性別", class: 'col-md-6' %>
+                <div class="form-check ml-3">
+                  <%= f.radio_button :gender, :man, class: 'form-check-input' %>
+                  <%= f.label "男性" %>
+                </div>
+                <div class="form-check">
+                  <%= f.radio_button :gender, :woman %>
+                  <%= f.label "女性" %>
+                </div>
+              </div>
+              <div class="form-group row mb-5 col-md-12">
+                <%= f.label "プロフィール文", class: 'col-md-6' %>
+                <div class="col-md-6">
+                  <%= f.text_area :introduction, autofocus: true, class: "form-control  col-md-10", placeholder: "国内旅行・温泉めぐりが好きです！等" %>
+                </div>
+              </div>
+              <div class="form-group row mb-5 col-md-12">
+                <%= f.label "居住地", class: 'col-md-6' %>
+                <div class="ml-3">
+                  <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {class: 'custom-select'} %>
+                </div>
+              </div>
+              <div class="form-group row mb-5 col-md-12">
+                <%= f.label 'メールアドレス', class: 'col-md-6' %>
+                <div class="col-md-6">
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control col-md-8" %>
+                </div>
+              </div>
+              <div class="form-group row mb-5 col-md-12">
+                <div class="col-md-6">
+                  <%= f.label 'パスワード' %></br>
+                  <% if @minimum_password_length %>
+                    <em>(<%= @minimum_password_length %>文字以上)</em>
+                  <% end %>
+                </div>
+                <div class="col-md-6">
+                  <%= f.password_field :password, autocomplete: "new-password", class: "form-control col-md-8" %>
+                </div>
+              </div>
+              <div class="form-group row mb-5 col-md-12">
+                <%= f.label 'パスワード(確認用)', class: 'col-md-6' %><br />
+                <div class="col-md-6">
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control col-md-8" %>
+                </div>
+              </div>
+
+            <div class="row mb-3 mt-5 justify-content-center">
+              <div class="actions">
+                <%= f.submit "登録する", class: "btn btn-outline-secondary" %>
+              </div>
+            </div>
+          <% end %>
+            <div class="row">
+              <div class="offset-md-9">
+                <%= link_to "ログインはこちら", new_user_session_path, class: 'text-muted' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
