@@ -9,6 +9,10 @@ class User < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
   validates :prefecture, presence: true
+  validates :name, presence: true, length: { maximum: 10 }
+  validates :gender, presence: true
+  validates :prefecture, presence: true
+  validates :introduction, length: { maximum: 300 }
 
   has_many :plans, dependent: :destroy
   has_many :comments, dependent: :destroy

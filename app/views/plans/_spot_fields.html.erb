@@ -1,23 +1,26 @@
 <div class="container">
   <div class="nested-fields well well-compact">
-    <div class="form-group row">
-      <div class="col-md-3">
+    <div class="form-group row mt-5">
+      <div class="col-md-3 mb-3">
         <%= f.label :schedule_time, '時間' %>
+        <span class="text-danger">＊</span>
       </div>
       <div class="col-md-9">
-        <%= f.time_select :schedule_time, {include_blank: true, minute_step: 5}, {class: 'time-box'} %>
+        <%= f.time_select :schedule_time, {include_blank: true, minute_step: 5}, {class: 'custom-select time-box col-md-1'} %>
       </div>
     </div>
-    <div class="form-group row">
+    <div class="form-group row mb-1">
       <div class="col-md-3">
         <%= f.label :spot_name, 'スポット名' %>
+        <span class="text-danger">＊</span>
+        <p class="small">(20文字以内)</p>
       </div>
       <div class="col-md-9">
-        <%= f.text_field :spot_name, class: "form-control" %>
+        <%= f.text_field :spot_name, class: "form-control col-md-8" %>
       </div>
     </div>
     <div class="form-group row">
-      <div class="col-md-3">
+      <div class="col-md-3 mb-3">
         <%= f.label :spot_image, 'スポット画像' %>
       </div>
       <div class="col-md-9">
@@ -27,12 +30,14 @@
     <div class="form-group row">
       <div class="col-md-3">
         <%= f.label :spot_introduction, 'スポット紹介文' %>
+        <span class="text-danger">＊</span>
+        <p class="small">(100文字以内)</p>
       </div>
       <div class="col-md-9">
         <%= f.text_area :spot_introduction, class: "form-control" %>
       </div>
       <div class="offset-md-11">
-        <%= link_to_remove_association "削除", f %>
+        <%= link_to_remove_association "削除", f, id: 'remove-btn', class: 'text-dark' %>
       </div>
     </div>
   </div>

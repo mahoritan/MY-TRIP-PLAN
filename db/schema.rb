@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_06_022254) do
+ActiveRecord::Schema.define(version: 2021_11_11_141052) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
@@ -23,16 +23,6 @@ ActiveRecord::Schema.define(version: 2021_11_06_022254) do
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "plan_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "form_bases", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "form_plan_collections", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -83,10 +73,10 @@ ActiveRecord::Schema.define(version: 2021_11_06_022254) do
     t.string "name"
     t.integer "gender"
     t.text "introduction"
-    t.integer "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "prefecture_id"
+    t.string "image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

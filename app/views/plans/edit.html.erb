@@ -35,7 +35,7 @@
         <%= f.label "主な移動手段" %>
       </div>
       <div class="col-md-9">
-       <%= f.select :transportation, Plan.transportations.keys, {prompt: "選択してください"} %>
+       <%= f.select :transportation, Plan.transportations.keys.map {|k| [I18n.t("enums.plan.transportation.#{k}"), k]}, {prompt: "選択してください"} %>
       </div>
     </div>
     <div class="form-group row mb-4">

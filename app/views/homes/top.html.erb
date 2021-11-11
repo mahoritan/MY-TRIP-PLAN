@@ -4,7 +4,7 @@
     <div class="col no-gutters">
       <%= image_tag('img/topimg.jpg', class: "img-fluid") %>
       <div class="card-img-overlay text-white">
-        <p class="mb-3">使い方はあなた次第</p>
+        <p class="mt-5 mb-4">使い方はあなた次第</p>
         <h1>MY TRIP PLAN</h1>
         <p class="mt-5 mb-5">
           様々な旅のシーンで役立つ<br/>
@@ -87,11 +87,13 @@
     <% @plans.each do |plan| %>
       <div class="card-deck d-block mx-auto">
         <div class="card h-90" style="width: 15rem; height: 26rem;">
-          <%= attachment_image_tag plan, :plan_image, :fill, 300, 225, format: 'jpeg', fallback: "img/no_imagelogo.jpg" %>
+          <%= link_to plan_path(plan.id) do %>
+            <%= attachment_image_tag plan, :plan_image, format: 'jpeg', fallback: "img/no_imagelogo.jpg" , width: '238', height: 'auto' %>
+          <% end %>
         <div class="card-body">
           <h5 class="card-title" style="height: 3rem;">
           <%= link_to plan.title, plan_path(plan.id), class: 'text-dark font-weight-bold' %></h5>
-          <p class="card-text text-overflow" style="height: 5rem;"><%= plan.plan_introduction %></p>
+          <p class="card-text text-overflow" style="height: 5rem;"><%= plan.plan_introduction.truncate(40) %></p>
         </div>
         <div class="card-body">
           <p>

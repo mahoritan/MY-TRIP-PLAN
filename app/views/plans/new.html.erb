@@ -1,22 +1,35 @@
 <div class="jumbotron">
   <div class="container-fluid">
-    <h2>PLAN一覧</h2>
+    <h2>PLAN登録</h2>
   </div>
 </div>
 
+  <% if @plan.errors.any? %>
+  <div class="row justify-content-center mt-3 mb-5 font-weight-bold text-danger">
+    <%= @plan.errors.count %>件のエラーが発生しました</br>
+    <% @plan.errors.full_messages.each do |message| %>
+    <%= message %></br>
+    <% end %>
+  </div>
+  <% end %>
+
   <div class="container">
+    <span class="text-danger">＊ 必須項目</span>
     <%= form_with model: @plan, url: plans_path, local:true do |f| %>
-    <div class="form-group row mb-4">
+    <div class="form-group row mb-1 mt-5">
       <div class="col-md-3">
         <%= f.label "プランタイトル" %>
+        <span class="text-danger">＊</span>
+        <p class="small">(20文字以内)</p>
       </div>
       <div class="col-md-9">
-        <%= f.text_field :title, class: "form-control" %>
+        <%= f.text_field :title, class: "form-control col-md-8" %>
       </div>
     </div>
     <div class="form-group row mb-4">
       <div class="col-md-3">
         <%= f.label "プランTOP画像" %>
+        <span class="text-danger">＊</span>
       </div>
       <div class="col-md-9">
       <%= f.attachment_field :plan_image %>
@@ -25,22 +38,26 @@
     <div class="form-group row mb-4">
       <div class="col-md-3">
         <%= f.label "エリア" %>
+        <span class="text-danger">＊</span>
       </div>
       <div class="col-md-9">
-        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: '都道府県'}, {class: 'custom-select'} %>
+        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: '都道府県'}, {class: 'custom-select col-md-3'} %>
        </div>
     </div>
     <div class="form-group row mb-4">
       <div class="col-md-3">
         <%= f.label "主な移動手段" %>
+        <span class="text-danger">＊</span>
       </div>
       <div class="col-md-9">
-       <%= f.select :transportation, Plan.transportations.keys, {prompt: "選択してください"} %>
+       <%= f.select :transportation, Plan.transportations.keys.map {|k| [I18n.t("enums.plan.transportation.#{k}"), k]}, {prompt: "選択してください"}, {class: 'custom-select col-md-3'} %>
       </div>
     </div>
     <div class="form-group row mb-4">
       <div class="col-md-3">
         <%= f.label "プラン紹介文" %>
+        <span class="text-danger">＊</span>
+        <p class="small">(300文字以内)</p>
       </div>
       <div class="col-md-9">
         <%= f.text_area :plan_introduction, class: "form-control" %>
@@ -48,7 +65,8 @@
     </div>
     <div class="form-group row mb-4">
       <div class="col-md-3">
-        <%= f.label "タグ（複数選択可）" %>
+        <%= f.label "タグ" %>
+        <p class="small">(300文字以内)</p>
       </div>
       <div class="col-md-9">
         <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
@@ -61,19 +79,19 @@
     </div>
 
     <div class="row">
-      <div class="row mt-3 mb-3">
-        <h4>スポット登録</h4>
+    <div class="col-md-4 mt-3">
+        <h5 class="font-weight-bold">スポット登録</h5>
       </div>
       <%= f.fields_for :spots do |op| %>
         <%= render 'spot_fields', f: op %>
         <div id="links"></div>
         <div class="offset-md-10">
-        <%= link_to_add_association '＋別のスポットを追加', f, :spots %>
+          <%= link_to_add_association '＋別のスポットを追加', f, :spots, class: 'text-dark' %>
         </div>
     </div>
 
   <div class="row">
-    <%= f.submit "プラン登録", class: "btn btn-outline-secondary" %>
+    <%= f.submit "プラン登録", class: "btn btn-outline-secondary mx-auto mb-5" %>
   </div>
    <% end %>
   <% end %>

@@ -1,0 +1,31 @@
+ja:
+  enums:
+    plan:
+      transportation:
+        car: 車
+        train: 電車
+        plain: 飛行機
+        bus: バス
+        bike: バイク
+        bicycle: 自転車
+        walk: 徒歩
+        another: その他
+  activerecord:
+    attributes:
+      user:
+        email: メールアドレス
+        password: パスワード
+        prefecture: 都道府県
+        name: ニックネーム
+        gender: 性別
+      plan:
+        title: プランタイトル
+        plan_introduction: プラン紹介文
+        plan_image_id: プランTOP画像
+        transportation: 移動手段
+        prefecture_id: エリア
+      spots:
+        schedule_time: 時間
+        spot_name: スポット名
+        spot_introduction: スポット紹介文
+        spot_image_id: スポット画像

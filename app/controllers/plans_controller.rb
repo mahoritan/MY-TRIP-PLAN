@@ -2,7 +2,7 @@ class PlansController < ApplicationController
 
   def index
     @q = Plan.ransack(params[:q])
-    @plans = @q.result(distinct: true)
+    @plans = @q.result(distinct: true).page(params[:page])
   end
 
   def show
@@ -19,8 +19,11 @@ class PlansController < ApplicationController
   def create
     @plan = Plan.new(plan_params)
     @plan.user_id = current_user.id
-    @plan.save
-    redirect_to root_path
+    if @plan.save
+      redirect_to plans_path
+    else
+      render :new
+    end
   end
 
   def edit

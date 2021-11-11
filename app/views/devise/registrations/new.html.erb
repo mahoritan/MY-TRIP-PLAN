@@ -36,7 +36,7 @@
               <div class="form-group row mb-5 col-md-12">
                 <%= f.label "居住地", class: 'col-md-6' %>
                 <div class="ml-3">
-                  <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {class: 'custom-select'} %>
+                  <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: '都道府県'}, {class: 'custom-select'} %>
                 </div>
               </div>
               <div class="form-group row mb-5 col-md-12">

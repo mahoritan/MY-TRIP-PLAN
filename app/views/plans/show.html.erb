@@ -1,33 +1,28 @@
 <div class="container">
-  <div class="row mb-3 mt-5">
-   <h3><%= @plan.title %></h3>
+  <div class="row mt-5">
+    <div class="d-block mx-auto mt-5">
+     <%= attachment_image_tag @plan, :plan_image, format: 'jpeg', width: '800', height: 'auto' %>
+    </div>
   </div>
 
-  <div class="row">
-    <div class="d-block mx-auto">
-     <%= attachment_image_tag @plan, :plan_image, :fill, 800, 533, format: 'jpeg' %>
-    </div>
-  </div>
-  <div class="row mt-3">
-    <div class="offset-md-9">
-      更新日：<%= @plan.created_at.strftime('%Y/%m/%d') %>
-    </div>
+  <div class="row mb-3">
+   <h3 class="mt-5 mb-3 mx-auto font-weight-bold">
+     <%= @plan.title %>
+    </h3>
   </div>
   <div class="row mt-4">
-    <div class="offset-md-2">
-      <%= @plan.plan_introduction %>
+    <div class="mx-auto">
+      <%= safe_join(@plan.plan_introduction.split("\n"),tag(:br)) %>
     </div>
   </div>
   <div class="row mt-5">
-    <div class="offset-md-2">
-      <%= @plan.prefecture.name %>
-    </div>
-    <div class="offset-md-1">
-      主な移動手段：<%= @plan.transportation %>
+    <div class="mx-auto">
+      <i class="fas fa-map-marker-alt mr-5"><%= @plan.prefecture.name %></i>
+      <i class="fas fa-shoe-prints">主な移動手段：<%= @plan.transportation_i18n %></i>
     </div>
   </div>
   <div class="row mt-5">
-    <div class="col-md-12 text-right">
+    <div class="mx-auto">
       <% @plan.tags.each do |tag| %>
         <button type="button" class="btn btn-secondary btn-sm" disabled>
           <%= tag.name %>
@@ -36,13 +31,18 @@
     </div>
   </div>
   <div class="row mt-3">
+    <div class="col-md-12 text-right">
+      更新日：<%= @plan.created_at.strftime('%Y/%m/%d') %>
+    </div>
+  </div>
+  <div class="row mt-3">
     <div class="offset-md-2 col-md-4">
       <% if current_user == @plan.user %>
         <%= link_to edit_plan_path(@plan.id), id: "button-edit-#{@plan.id}" do %>
-          <%= icon 'fa', 'pen' %>
+          <i class="fas fa-pen text-dark mr-3">編集する</i>
         <% end %>
         <%= link_to plan_path(@plan.id), id: "button-delete-#{@plan.id}", method: :delete, data: {confirm: '本当に削除してもよろしいです'} do %>
-          <%= icon 'fas', 'trash' %>
+          <i class="fas fa-trash-alt text-dark">削除する</i>
         <% end %>
       <% else %>
         <%= render 'plans/favorite_area', plan: @plan %>
@@ -50,38 +50,38 @@
     </div>
   </div>
 
-
-
   <% @spots.each do |spot| %>
-  <div class="row mt-5">
-    <div class="offset-md-2 col-md-4">
-      <h4><%= spot.schedule_time.strftime('%H:%M') %></h4>
+    <div class="card mb-3 mt-5 mx-auto" style="max-width: 800px;">
+      <div class="row no-gutters">
+        <div class="col-md-5">
+          <%= attachment_image_tag spot, :spot_image, format: 'jpeg', fallback: "img/no_imagelogo.jpg", width: '300', height: 'auto' %>
+        </div>
+      <div class="col-md-7">
+        <div class="card-body">
+          <div class="card-text mb-3">
+            <i class="far fa-clock font-weight-bold"><%= spot.schedule_time.strftime('%H:%M') %></i>
+          </div>
+          <h5 class="card-title font-weight-bold"><%= spot.spot_name %></h5>
+          <p class="card-text"><%= safe_join(spot.spot_introduction.split("\n"),tag(:br)) %></p>
+        </div>
+      </div>
+      </div>
     </div>
-  </div>
-  <div class="row mt-3">
-    <div class="offset-lg-2 col-lg-4">
-      <%= attachment_image_tag spot, :spot_image, format: 'jpeg', fallback: "img/no_imagelogo.jpg", size: "300x225" %>
-    </div>
-    <div class="col-lg-6">
-      <h4><%= spot.spot_name %></h4>
-      <p class="mt-5"><%= spot.spot_introduction %></p>
-    </div>
-  </div>
   <% end %>
 
-  <div class="row mt-5">
+  <div class="row mt-5 mx-auto">
     <div class="offset-md-2 col-md-8">
       <h4>Comment</h4>
       <table class="table">
         <thead>
           <% @plan.comments.each do |comment| %>
           <tr>
-            <td><%= link_to comment.user.name, user_path(comment.user) %></td>
+            <td><i class="fas fa-user"><%= link_to comment.user.name, user_path(comment.user), class: 'text-dark' %></i></td>
             <td><%= comment.comment_text %></td>
             <td>
               <% if comment.user == current_user %>
                 <%= link_to plan_comment_path(comment.plan_id, comment.id), method: :delete do %>
-                  <i class="far fa-trash-alt"></i>
+                  <i class="far fa-trash-alt text-dark"></i>
                 <% end %>
               <% end %>
             </td>
@@ -89,17 +89,14 @@
           <% end %>
         </thead>
       </table>
-
     </div>
-    <div class="offset-md-2 col-md-10">
-      <form class="form-inline">
+    <div class="offset-md-2 col-md-10 mb-5">
         <% if user_signed_in? %>
-          <%= form_with(model:[@plan, @comment], local: true) do |f| %>
+          <%= form_with(model:[@plan, @comment], url: plan_comments_path(@plan.id), local: true) do |f| %>
             <%= f.text_area :comment_text, rows:'5', placeholder: "コメント", class: 'form-control col-md-5' %>
             <%= f.submit "送信する", class: "btn btn-outline-secondary ml-3" %>
           <% end %>
         <% end %>
-      </form>
     </div>
   </div>
 </div>
