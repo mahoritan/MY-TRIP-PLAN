@@ -29,7 +29,6 @@
     <div class="form-group row mb-4">
       <div class="col-md-3">
         <%= f.label "プランTOP画像" %>
-        <span class="text-danger">＊</span>
       </div>
       <div class="col-md-9">
       <%= f.attachment_field :plan_image %>
@@ -66,7 +65,7 @@
     <div class="form-group row mb-4">
       <div class="col-md-3">
         <%= f.label "タグ" %>
-        <p class="small">(300文字以内)</p>
+        <p class="small">(複数選択可)</p>
       </div>
       <div class="col-md-9">
         <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
@@ -88,12 +87,12 @@
         <div class="offset-md-10">
           <%= link_to_add_association '＋別のスポットを追加', f, :spots, class: 'text-dark' %>
         </div>
+        <% end %>
     </div>
 
   <div class="row">
     <%= f.submit "プラン登録", class: "btn btn-outline-secondary mx-auto mb-5" %>
   </div>
-   <% end %>
   <% end %>
 </div>
 </div>

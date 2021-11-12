@@ -2,7 +2,7 @@ class PlansController < ApplicationController
 
   def index
     @q = Plan.ransack(params[:q])
-    @plans = @q.result(distinct: true).page(params[:page])
+    @plans = @q.result(distinct: true).order("created_at DESC").page(params[:page])
   end
 
   def show

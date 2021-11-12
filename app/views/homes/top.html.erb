@@ -10,7 +10,9 @@
           様々な旅のシーンで役立つ<br/>
           旅プラン共有サイト
         </p>
-        <%= link_to "新規登録をしてはじめる", new_user_registration_path, class: 'btn btn-outline-light' %>
+        <% unless user_signed_in? %>
+          <%= link_to "新規登録をしてはじめる", new_user_registration_path, class: 'btn btn-outline-light' %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -33,7 +35,7 @@
 
   <div class="row mt-5">
     <div class="col-md-12 text-center">
-      <h4>MY TRIP PLANの使い方</h4>
+      <h4>MY TRIP PLANの使い方 例</h4>
     </div>
   </div>
 
@@ -83,12 +85,12 @@
       <h4>注目PLAN</h4>
     </div>
   </div>
-  <div class="row pb-5">
+  <div class="row pb-5 pl-5 pr-5">
     <% @plans.each do |plan| %>
       <div class="card-deck d-block mx-auto">
         <div class="card h-90" style="width: 15rem; height: 26rem;">
           <%= link_to plan_path(plan.id) do %>
-            <%= attachment_image_tag plan, :plan_image, format: 'jpeg', fallback: "img/no_imagelogo.jpg" , width: '238', height: 'auto' %>
+            <%= attachment_image_tag plan, :plan_image, format: 'jpeg', fallback: "img/no_imagelogo.jpg" , width: '238', height: '179' %>
           <% end %>
         <div class="card-body">
           <h5 class="card-title" style="height: 3rem;">

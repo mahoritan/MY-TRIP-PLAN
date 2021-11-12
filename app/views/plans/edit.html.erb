@@ -6,9 +6,11 @@
 
 <div class="container">
   <%= form_with model: @plan, url: plan_path, local:true do |f| %>
-    <div class="form-group row mb-4">
+    <div class="form-group row mb-1">
       <div class="col-md-3">
         <%= f.label "プランタイトル" %>
+        <span class="text-danger">＊</span>
+        <p class="small">(20文字以内)</p>
       </div>
       <div class="col-md-9">
         <%= f.text_field :title, class: "form-control" %>
@@ -25,6 +27,7 @@
     <div class="form-group row mb-4">
       <div class="col-md-3">
         <%= f.label "エリア" %>
+        <span class="text-danger">＊</span>
       </div>
       <div class="col-md-9">
         <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, class: 'form-select' %>
@@ -33,6 +36,7 @@
     <div class="form-group row mb-4">
       <div class="col-md-3">
         <%= f.label "主な移動手段" %>
+        <span class="text-danger">＊</span>
       </div>
       <div class="col-md-9">
        <%= f.select :transportation, Plan.transportations.keys.map {|k| [I18n.t("enums.plan.transportation.#{k}"), k]}, {prompt: "選択してください"} %>
@@ -41,6 +45,8 @@
     <div class="form-group row mb-4">
       <div class="col-md-3">
         <%= f.label "プラン紹介文" %>
+        <span class="text-danger">＊</span>
+        <p class="small">(300文字以内)</p>
       </div>
       <div class="col-md-9">
         <%= f.text_area :plan_introduction, class: "form-control" %>
@@ -48,7 +54,8 @@
     </div>
     <div class="form-group row mb-4">
       <div class="col-md-3">
-        <%= f.label "タグ（複数選択可）" %>
+        <%= f.label "タグ" %>
+        <p class="small">(複数選択可)</p>
       </div>
       <div class="col-md-9">
         <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
@@ -63,21 +70,18 @@
     <div class="row">
       <%= f.fields_for :spots do |op| %>
         <%= render 'spot_fields', f: op %>
-        <div id="links"></div>
-        <div class="offset-md-10">
-        <%= link_to_add_association '＋別のスポットを追加', f, :spots %>
-        </div>
+
       <% end %>
+      <div class="offset-md-10">
+        <%= link_to_add_association '＋別のスポットを追加', f, :spots, class: 'text-dark' %>
+        </div>
     </div>
 
-  <div class="row">
-    <div class="offset-md-3">
-      <%= f.submit "プラン編集", class: "btn btn-outline-secondary" %>
-    </div>
-    <div class="offset-md-3">
-      <%= link_to "プラン削除", plan_path(@plan.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-secondary" %>
+  <div class="row mb-5">
+    <div class="col-md-12 text-center">
+      <%= f.submit "プラン編集", class: "btn btn-outline-secondary mr-5" %>
+      <%= link_to "プラン削除", plan_path(@plan.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger" %>
     </div>
   </div>
-
   <% end %>
 </div>

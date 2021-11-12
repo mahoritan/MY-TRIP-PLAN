@@ -21,6 +21,12 @@ class UsersController < ApplicationController
     @favorite_plans = @user.favorites.order(created_at: "DESC").map{|favorite| favorite.plan}
   end
 
+  def destroy
+    @user= User.find(params[:id])
+    @user.destroy
+    redirect_to :root
+  end
+
   private
 
   def user_params

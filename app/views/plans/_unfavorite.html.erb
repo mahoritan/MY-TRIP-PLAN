@@ -1,5 +1,5 @@
 <%= link_to plan_favorites_path(@plan.id), id: "js-favorite-button-for-plan-#{@plan.id}", method: :delete do %>
-  <button class="btn btn-outline-danger">
+  <button class="btn btn-danger">
     <i class="fas fa-heart">
       <%= @plan.favorites.count %>行きたい
     </i>

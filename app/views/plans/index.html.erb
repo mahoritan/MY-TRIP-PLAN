@@ -6,26 +6,28 @@
 
 <div class="container">
   <%= search_form_for @q do |f| %>
-    <div class="row col-md-12 mb-4">
-      <div class="col-md-2">
-        <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, {include_blank: '都道府県'}, {class: 'custom-select'} %>
-      </div>
-      <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-12">
         <% Tag.all.each do |tag| %>
           <%= f.check_box :tags_id_eq_any, { multiple: true, checked: tag[:checked], disabled: tag[:disabled], include_hidden: false }, tag[:id] %>
           <label><%= tag.name %></label>
         <% end %>
-        <%= f.submit '検索', class: 'search_submit btn btn-outline-secondary ml-5' %>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-md-12 form-inline">
+        <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, {include_blank: '都道府県'}, {class: 'custom-select col-md-2'} %>
+        <%= f.submit '検索', class: 'search_submit btn btn-outline-secondary ml-4' %>
       </div>
     </div>
   <% end %>
 
   <div class="row mb-5">
     <% @plans.each do |plan| %>
-      <div class="card-deck ml-1">
+      <div class="card-deck ml-1 mb-3">
         <div class="card" style="width: 15rem; height: 26rem;">
           <%= link_to plan_path(plan.id) do %>
-            <%= attachment_image_tag plan, :plan_image, format: 'jpeg', fallback: "img/no_imagelogo.jpg", width: '238', height: 'auto' %>
+            <%= attachment_image_tag plan, :plan_image, format: 'jpeg', fallback: "img/no_imagelogo.jpg", width: '238', height: '179' %>
           <% end %>
         <div class="card-body">
           <h5 class="card-title" style="height: 3rem;">
@@ -43,5 +45,7 @@
     <% end %>
   </div>
   </div>
-  <%= paginate @plans %>
+  <div class="text-center">
+    <%= paginate @plans %>
+  </div>
 </div>

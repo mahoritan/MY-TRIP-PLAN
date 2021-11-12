@@ -1,5 +1,5 @@
 class HomesController < ApplicationController
   def top
-    @plans = Plan.includes(:favorite_plans).sort {|a,b| b.favorite_plans.size <=> a.favorite_plans.size}
+    @plans = Plan.find(Favorite.group(:plan_id).order('count(plan_id) desc').limit(4).pluck(:plan_id))
   end
 end
