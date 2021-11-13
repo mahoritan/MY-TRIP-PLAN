@@ -53,3 +53,17 @@
 .pagination {
   justify-content: center;
 }
+
+@font-face {
+  font-family: "Cremona";
+  src: url('/assets/Cremona.ttf') format("truetype");
+}
+
+.top-font {
+  font-family: "Cremona";
+  font-size: 60px;
+}
+
+.logo-font {
+  font-family: "Cremona";
+}
