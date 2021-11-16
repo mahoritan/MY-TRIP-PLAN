@@ -7,7 +7,7 @@
 <div class="container">
   <div class="row">
     <div class="offset-md-2">
-      <%= attachment_image_tag @user, :image, format: 'jpeg', fallback: "img/no_image2.jpg", width: '130', height: 'auto' %>
+      <%= attachment_image_tag @user, :image, format: 'jpeg', fallback: "/img/no_image2.jpg", width: '130', height: 'auto' %>
     </div>
     <div class="offset-md-1 col-md-4">
       <h3><%= @user.name %></h3>
@@ -35,7 +35,7 @@
       <div class="card-deck ml-1 mb-3">
         <div class="card" style="width: 15rem; height: 26rem;">
           <%= link_to plan_path(plan.id) do %>
-            <%= attachment_image_tag plan, :plan_image, format: 'jpeg', fallback: "img/no_imagelogo.jpg", width: '238', height: '179' %>
+            <%= attachment_image_tag plan, :plan_image, format: 'jpeg', fallback: "/img/no_imagelogo.jpg", width: '238', height: '179' %>
           <% end %>
         <div class="card-body">
           <h5 class="card-title" style="height: 3rem;">
