@@ -37,13 +37,17 @@ ActiveRecord::Schema.define(version: 2021_11_11_141052) do
   end
 
   create_table "plans", force: :cascade do |t|
+    t.integer "area_id"
     t.integer "prefecture_id"
     t.integer "user_id"
+    t.string "spot_name"
     t.string "title"
     t.text "plan_introduction"
+    t.string "image_id"
     t.integer "transportation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "spot_introduction"
     t.string "plan_image_id"
   end
 
