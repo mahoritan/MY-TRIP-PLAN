@@ -71,3 +71,9 @@ SNSで話題の穴場スポットや写真映えするスポットを巡るな�
 - フレームワーク：Ruby on Rails
 - JS ライブラリ：jQuery
 - IDE：Cloud9
+
+## 使用素材
+- Unsplash <https://unsplash.com/>
+- iconmonstr <https://iconmonstr.com/>
+- HUMAN PICTOGRAM2.0 <https://pictogram2.com/>
+- 
