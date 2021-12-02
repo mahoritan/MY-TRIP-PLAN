@@ -42,7 +42,7 @@
         <%= link_to edit_plan_path(@plan.id), id: "button-edit-#{@plan.id}" do %>
           <i class="fas fa-pen text-dark mr-3">編集する</i>
         <% end %>
-        <%= link_to plan_path(@plan.id), id: "button-delete-#{@plan.id}", method: :delete, data: {confirm: '本当に削除してもよろしいです'} do %>
+        <%= link_to plan_path(@plan.id), id: "button-delete-#{@plan.id}", method: :delete, data: {confirm: '本当に削除しますか？'} do %>
           <i class="fas fa-trash-alt text-dark">削除する</i>
         <% end %>
       <% else %>
