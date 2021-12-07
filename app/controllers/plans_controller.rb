@@ -28,9 +28,7 @@ class PlansController < ApplicationController
 
   def edit
     @plan = Plan.find(params[:id])
-    if @plan.user_id == current_user.id
-      render "edit"
-    else
+    unless @plan.user_id == current_user.id
       redirect_to plans_path
     end
   end
