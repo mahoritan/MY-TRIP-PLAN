@@ -52,7 +52,7 @@
   </div>
 
   <% @spots.each do |spot| %>
-    <div class="card mb-3 mt-5 mx-auto" style="max-width: 800px;">
+    <div class="card spot-card mb-3 mt-5 mx-auto">
       <div class="row no-gutters">
         <div class="col-md-5">
           <%= attachment_image_tag spot, :spot_image, format: 'jpeg', fallback: "/img/no_imagelogo.jpg", width: '300', height: 'auto' %>

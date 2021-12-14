@@ -1,12 +1,12 @@
 <div class="card-deck ml-1 mb-3">
-  <div class="card" style="width: 15rem; height: 26rem;">
+  <div class="card plan-card">
     <%= link_to plan_path(plan.id) do %>
       <%= attachment_image_tag plan, :plan_image, format: 'jpeg', fallback: "img/no_imagelogo.jpg" , width: '238', height: '179' %>
     <% end %>
       <div class="card-body">
-        <h5 class="card-title" style="height: 3rem;">
+        <h5 class="card-title plan-title">
         <%= link_to plan.title, plan_path(plan.id), class: 'text-dark font-weight-bold' %></h5>
-        <p class="card-text text-overflow" style="height: 5rem;"><%= plan.plan_introduction.truncate(40) %></p>
+        <p class="card-text plan-text text-overflow"><%= plan.plan_introduction.truncate(40) %></p>
       </div>
       <div class="card-body">
         <p>
